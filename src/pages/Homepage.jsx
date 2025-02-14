@@ -1,10 +1,8 @@
-import TiptapEditor from "../components/editor/TiptapEditor";
-import Button from "../components/shared/button/Button";
+import TiptapEditor from "../components/editor/TiptapEditor"
 const Homepage = () => {
     return (
         <div>
             <TiptapEditor />
-            <Button>Preview</Button>
         </div>
     );
 };
