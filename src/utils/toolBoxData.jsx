@@ -10,17 +10,16 @@ import {
     FaShippingFast,
     FaTable,
   } from "react-icons/fa";
-import HeadingContent from "../components/toolboxes/Heading/Heading";
-import Paragraph from "../components/toolboxes/Paragraph/Paragraph";
-import Table from "../components/toolboxes/Table/Table";
-import ListItem from "../components/toolboxes/ListItems/ListItems";
+import Heading from "../components/toolboxes/Heading/Heading.jsx"
+import Contact from "../components/toolboxes/Contacts/Contact.jsx"
+import Paragraph from "../components/toolboxes/Paragraph/Paragraph.jsx"
   
   export const toolBoxItems = [
     {
       id: 1,
       title: "Heading",
       icon: <FaHeading />,
-      content: HeadingContent(),
+      content: Heading(),
     },
     {
       id: 2,
@@ -50,7 +49,7 @@ import ListItem from "../components/toolboxes/ListItems/ListItems";
       id: 6,
       title: "Table",
       icon: <FaTable />,
-      content: Table(),
+      content: Heading(),
     },
     {
       id: 7,
@@ -75,7 +74,7 @@ import ListItem from "../components/toolboxes/ListItems/ListItems";
       id: 10,
       title: "Ul",
       icon: <FaList />,
-      content: ListItem(),
+      content: Contact(),
     },
   ];
   

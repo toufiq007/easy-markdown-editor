@@ -10,8 +10,9 @@ import TextStyle from "@tiptap/extension-text-style";
 import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
-import Gapcursor from '@tiptap/extension-gapcursor'
-import Image from '@tiptap/extension-image'
+import Gapcursor from "@tiptap/extension-gapcursor";
+import Image from "@tiptap/extension-image";
+import { toolBoxItems } from "../../utils/toolBoxData";
 
 const TiptapEditor = () => {
   const editor = useEditor({
@@ -101,49 +102,85 @@ const TiptapEditor = () => {
         },
       }),
     ],
-    content:""
-//     content: `
-//     <h2>
-//       Hi there,
-//     </h2>
-//     <p>
-//       this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-//     </p>
-//     <ul>
-//       <li>
-//         That’s a bullet list with one …
-//       </li>
-//       <li>
-//         … or two list items.
-//       </li>
-//     </ul>
-//     <p>
-//       Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-//     </p>
-// <pre><code class="language-css">body {
-//   display: none;
-// }</code></pre>
-//     <p>
-//       I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-//     </p>
-//     <blockquote>
-//       Wow, that’s amazing. Good work, boy! 👏
-//       <br />
-//       — Mom
-//     </blockquote>`,
+    content: "",
+    //     content: `
+    //     <h2>
+    //       Hi there,
+    //     </h2>
+    //     <p>
+    //       this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
+    //     </p>
+    //     <ul>
+    //       <li>
+    //         That’s a bullet list with one …
+    //       </li>
+    //       <li>
+    //         … or two list items.
+    //       </li>
+    //     </ul>
+    //     <p>
+    //       Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
+    //     </p>
+    // <pre><code class="language-css">body {
+    //   display: none;
+    // }</code></pre>
+    //     <p>
+    //       I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
+    //     </p>
+    //     <blockquote>
+    //       Wow, that’s amazing. Good work, boy! 👏
+    //       <br />
+    //       — Mom
+    //     </blockquote>`,
   });
+
+  // this is the drag handler
+  const handleDragStart = (e, contentId) => {
+    e.dataTransfer.setData("text/plain", contentId.toString());
+  };
+  const handleOnDrop = (e) => {
+    e.preventDefault();
+    const contentId = e.dataTransfer.getData("text/plain");
+    const boxContent = toolBoxItems.find((box) => box.id === Number(contentId));
+    console.log(boxContent);
+    editor.commands.insertContent(boxContent?.content);
+  };
+  const handleOnDragOver = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
-      <div>
-        <div style={{ height: "100vh" }}>
+      <div
+        style={{ height: "calc(100vh - 70px)" }}
+        className="grid grid-cols-[3fr_1fr] p-4 overflow-auto"
+      >
+        <div
+          onDrop={handleOnDrop}
+          onDragOver={handleOnDragOver}
+          className="bg-[var(--editorBackground)] h-[calc(100vh - 100px)] overflow-auto"
+        >
           {editor && (
             <CustomBubbleMenu editor={editor} BubbleMenu={BubbleMenu} />
           )}
-          <EditorContent
-            editor={editor}
-            style={{ background: "#ededed", height: "100vh", overflow: "auto" }}
-          />
+          <EditorContent editor={editor} />
+        </div>
+        <div className="w-[400px] grid grid-cols-2 gap-4 overflow-auto px-6 h-[780px]">
+          {toolBoxItems &&
+            toolBoxItems.map((box, index) => (
+              <div key={index}>
+                <div
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, box.id)}
+                  className="flex items-center justify-center h-[145px] bg-[var(--toolBoxBackground)] rounded-xl flex-col cursor-move"
+                >
+                  <h4 style={{ fontSize: "1rem", marginBottom: ".5rem" }}>
+                    {box.title}
+                  </h4>
+                  <span style={{ fontSize: "1.5rem" }}>{box.icon}</span>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </>
