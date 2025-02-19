@@ -16,6 +16,7 @@ import Contact from "../components/toolboxes/Contacts/Contact.jsx"
 import YoutubeVideo from "../components/toolboxes/YoutubeVideo/YoutubeVideo.jsx";
 import Image from "../components/toolboxes/images/Image.jsx";
 import Table from "../components/toolboxes/tables/Table.jsx";
+import Code from "../components/toolboxes/Code/Code.jsx";
   
   export const toolBoxItems = [
     {
@@ -34,7 +35,7 @@ import Table from "../components/toolboxes/tables/Table.jsx";
       id: 3,
       title: "Code",
       icon: <FaShippingFast />,
-      content: "<h2>this is shipping</h2>",
+      content: Code(),
     },
     {
       id: 4,

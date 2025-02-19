@@ -1,8 +1,7 @@
 
 const Code = () => {
     return `<p>
-          That’s a boring paragraph followed by a fenced code block:
-        </p>
+          That’s a boring paragraph followed by a fenced code block:</p>
         <pre><code>for (var i=1; i <= 20; i++)
 {
   if (i % 15 == 0)
