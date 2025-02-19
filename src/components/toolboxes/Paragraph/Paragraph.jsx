@@ -1,10 +1,6 @@
-
 const Paragraph = () => {
-    return (
-        <div>
-            <h2>paragraph</h2>
-        </div>
-    );
-};
-
-export default Paragraph;
+    return `<h1>This is heading from heading components</h1>`;
+  };
+  
+  export default Paragraph;
+  

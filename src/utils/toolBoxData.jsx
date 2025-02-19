@@ -11,8 +11,11 @@ import {
     FaTable,
   } from "react-icons/fa";
 import Heading from "../components/toolboxes/Heading/Heading.jsx"
-import Contact from "../components/toolboxes/Contacts/Contact.jsx"
 import Paragraph from "../components/toolboxes/Paragraph/Paragraph.jsx"
+import Contact from "../components/toolboxes/Contacts/Contact.jsx"
+import YoutubeVideo from "../components/toolboxes/YoutubeVideo/YoutubeVideo.jsx";
+import Image from "../components/toolboxes/images/Image.jsx";
+import Table from "../components/toolboxes/tables/Table.jsx";
   
   export const toolBoxItems = [
     {
@@ -29,27 +32,27 @@ import Paragraph from "../components/toolboxes/Paragraph/Paragraph.jsx"
     },
     {
       id: 3,
-      title: "Shipping",
+      title: "Code",
       icon: <FaShippingFast />,
       content: "<h2>this is shipping</h2>",
     },
     {
       id: 4,
-      title: "Delivery",
+      title: "Video",
       icon: <FaCar />,
-      content: "<h1>this is all delivery</h1>",
+      content: YoutubeVideo(),
     },
     {
       id: 5,
-      title: "Content",
+      title: "Image",
       icon: <FaCropAlt />,
-      content: "<h1>this is all content</h1>",
+      content: Image(),
     },
     {
       id: 6,
       title: "Table",
       icon: <FaTable />,
-      content: Heading(),
+      content: Table(),
     },
     {
       id: 7,
@@ -59,9 +62,9 @@ import Paragraph from "../components/toolboxes/Paragraph/Paragraph.jsx"
     },
     {
       id: 8,
-      title: "Content",
+      title: "Contacts",
       icon: <FaHeadphones />,
-      content: "<h1>this is all another content</h1>",
+      content: Contact(),
     },
   
     {
