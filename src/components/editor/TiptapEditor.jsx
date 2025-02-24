@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "./style.scss";
 import Highlight from "@tiptap/extension-highlight";
@@ -16,10 +17,13 @@ import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
-import Youtube from '@tiptap/extension-youtube'
+import Youtube from "@tiptap/extension-youtube";
 import { toolBoxItems } from "../../utils/toolBoxData";
+import Button from "../shared/button/Button";
+import { useNavigate } from "react-router-dom";
 
-const TiptapEditor = () => {
+const TiptapEditor = ({ handlePreviewAction }) => {
+  const navigate = useNavigate()
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -42,9 +46,9 @@ const TiptapEditor = () => {
       TableRow,
       TableHeader,
       TableCell,
-      // Placeholder.configure({
-      //   placeholder: "Write something …",
-      // }),
+      Placeholder.configure({
+        placeholder: "Write something …",
+      }),
       Link.configure({
         openOnClick: false,
         autolink: true,
@@ -118,7 +122,7 @@ const TiptapEditor = () => {
       }),
     ],
     // content: "",
-        content: `
+    content: `
         <h2>
           Hi there,
         </h2>
@@ -164,8 +168,19 @@ const TiptapEditor = () => {
     e.preventDefault();
   };
 
+   // Function to get HTML content and pass it to the parent component
+   const handlePreview = () => {
+    if (!editor) return;
+    const htmlContent = editor.getHTML();
+    handlePreviewAction(htmlContent); // Pass content to parent
+    navigate('/tempalte-view')
+  };
+
   return (
     <>
+      <div className="flex justify-end items-center p-4">
+        <Button handleActions={handlePreview}>preview data</Button>
+      </div>
       <div
         style={{ height: "calc(100vh - 70px)" }}
         className="grid grid-cols-[3fr_1fr] p-4 overflow-auto"

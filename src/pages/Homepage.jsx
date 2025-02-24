@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import TiptapEditor from "../components/editor/TiptapEditor"
-const Homepage = () => {
+import DemoEditor from "../components/test/DemoEditor";
+const Homepage = ({handlePreviewAction}) => {
     return (
         <div>
-            <TiptapEditor />
+            <TiptapEditor handlePreviewAction={handlePreviewAction} />
+            {/* <DemoEditor/> */}
         </div>
     );
 };

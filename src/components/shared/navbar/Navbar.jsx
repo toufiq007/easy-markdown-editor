@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import Button from "../button/Button";
 import { Sun } from "lucide-react";
-const Navbar = () => {
+const Navbar = ({handlePreviewAction,handleDownloadContent}) => {
   return (
     <div>
       <div className="bg-[var(--navbarColor)]">
@@ -10,8 +11,8 @@ const Navbar = () => {
             <Link to="/">easyMarkDown</Link>
           </h2>
           <div className="flex gap-4 items-center">
-            <Button>Preview</Button>
-            <Button>Download</Button>
+            <Button handleActions={handlePreviewAction}>Preview</Button>
+            <Button handleActions={handleDownloadContent}>Download</Button>
             <Button>
               <Sun className="text-white rounded-full cursor-pointer" />
             </Button>
