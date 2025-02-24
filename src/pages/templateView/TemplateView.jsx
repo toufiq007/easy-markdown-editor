@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
 
-const TemplateView = ({editorContent}) => {
-    console.log(editorContent)
-    return (
-        <div>
-            <h2>showing the tempalte view component</h2>
-        </div>
-    );
+import TiptapEditor from "../../components/editor/TiptapEditor";
+import DemoEditor from "../../components/test/DemoEditor";
+
+const TemplateView = ({ editorContent }) => {
+
+  return (
+    <div
+      style={{ height: "calc(100vh - 70px)" }}
+      className="p-4 overflow-auto bg-red-200"
+    >
+     
+      <DemoEditor editorContent={editorContent}  />
+    </div>
+  );
 };
 
 export default TemplateView;
